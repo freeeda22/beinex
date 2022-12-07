@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+body {font-family: "Lato", sans-serif;}
+
+.sidebar {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 16px;
+}
+
+.sidebar a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+.header {
+  padding: 0px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 30px;
+}
+
+.sidebar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: white;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+input[type=text]{
+  width: 50%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 25%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+/* label {
+  display: inline-block;
+  width: 140px;
+  text-align: right;
+}​ */
+ /* .theInputs{
+  
+
+  width:30%;
+  float:right;
+}  */
+
+.theLabels{
+  
+  width:35%;
+  float:left;
+} 
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <a href="{% url 'employee:create' %}" method="GET" class="active"><i class="fa fa-fw fa-home"></i> Home</a>
+  <a href="{% url 'employee:creationform' %}" method="POST"><i class="fa fa-fw fa-user"></i>New Employee</a>
+  <a href="{% url 'employee:index' %}" method="POST"><i class="fa fa-fw fa-user"></i>Logout</a>
+</div>
+<div style="margin-left:8%">
+
+    <div class="w3-container w3-teal">
+      <h1>Employee Record</h1>
+    </div>
+</div>
+<form action="{% url 'employee:edit' id %}" method="POST" style="margin-left:10%">
+    {% csrf_token %}
+
+    <div class="container">
+      <h1>Register</h1>
+      <p>Please fill in this form to create an account.</p>
+      <hr>
+
+      <label class="theLabels" for="employee_code"><b>Employee Code</b></label>
+      <input class="theInputs" type="text" placeholder="Enter Employee Code" value={{code}} name="employee_code" id="employee_code" readonly>
+
+      <label class="theLabels" for="name"><b>Name</b></label>
+      <input class="theInputs" type="text" placeholder="Enter Name" name="name" value={{name}} id="name" readonly>
+        
+      <label class="theLabels" for="salary"><b>Salary</b></label>
+      <input class="theInputs" type="text" placeholder="Enter Salary" name="salary" id="salary" required>
+
+      <center><button type="submit" class="registerbtn">Submit</button></center>
+    </div>
+    
+  </form>
+</body>
+</html> 

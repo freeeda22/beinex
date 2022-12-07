@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+body {font-family: "Lato", sans-serif;}
+
+.sidebar {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 16px;
+}
+
+.sidebar a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+.header {
+  padding: 0px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 30px;
+}
+
+.sidebar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: black;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+input[type=text]{
+  width: 50%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.editbtn {
+  background-color: #aa0404;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 25%;
+  opacity: 0.9;
+}
+
+.editbtn:hover {
+  opacity: 1;
+}
+.deletebtn {
+  background-color: #aa0404;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 25%;
+  opacity: 0.9;
+}
+
+.deletebtn:hover {
+  opacity: 1;
+}
+/* label {
+  display: inline-block;
+  width: 140px;
+  text-align: right;
+}​ */
+ /* .theInputs{
+  
+
+  width:30%;
+  float:right;
+}  */
+
+.theLabels{
+  
+  width:35%;
+  float:left;
+} 
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <a href="{% url 'employee:create' %}" method="GET" class="active"><i class="fa fa-fw fa-home"></i> Home</a>
+  <a href="{% url 'employee:creationform' %}" method="POST"><i class="fa fa-fw fa-user"></i>New Employee</a>
+  <a href="{% url 'employee:index' %}" method="POST"><i class="fa fa-fw fa-user"></i>Logout</a>
+</div>
+<div style="margin-left:8%">
+
+    <div class="w3-container w3-teal">
+      <h1>Employee Record</h1>
+    </div>
+</div>
+{% for i in context %}
+<form style="margin-left:10%" action="{% url 'employee:edit' i.id %}" method="post">
+    {% csrf_token %}
+
+    <div class="container">
+      <hr>
+      <label class="theLabels" for="employee_code"><b>Employee Code</b></label>
+      <input class="theInputs" type="text" placeholder="Enter Employee Code" value="{{i.employee_code}}" name="employee_code" id="employee_code" required>
+
+      <label class="theLabels" for="name"><b>Name</b></label>
+      <input class="theInputs" type="text" placeholder="Enter Name" value="{{i.name}}" name="name" id="name" required>
+        
+      <label class="theLabels" for="email"><b>Email</b></label>
+      <input class="theInputs" type="text" placeholder="Enter Email"  value="{{i.email}}" name="email" id="email" required>
+
+      <label class="theLabels" for="address"><b>Address</b></label>
+      <input class="theInputs" type="text" placeholder="Enter Address"  value="{{i.address}}" name="address" id="address" required>
+
+      <label class="theLabels" for="phone_number"><b>Mobile Number</b></label>
+      <input class="theInputs" type="text" placeholder="Enter Mobile"  value="{{i.phone_number}}"  name="phone_number" id="phone_number" required>
+
+      <label class="theLabels" for="DOB"><b>DOB</b></label>
+      <input class="theInputs" type="text" placeholder="Enter DOB"  value="{{i.DOB}}" name="DOB" id="DOB" required>
+
+      <label class="theLabels" for="designation"><b>Designation</b></label>
+      <input class="theInputs" type="text" placeholder="Enter Designation"  value="{{i.designation}}"  name="designation" id="designation" required>
+
+      <label class="theLabels" for="aadharNumber"><b>AadharNumber</b></label>
+      <input class="theInputs" type="text" placeholder="Enter AadharNumber"  value="{{i.aadharNumber}}" name="aadharNumber" id="aadharNumber" required>
+
+      <label class="theLabels" for="bankName"><b>Bank Name</b></label>
+      <input class="theInputs" type="text" placeholder="Enter Bank Name"  value="{{i.bankName}}" name="bankName" id="bankName" required>
+
+      <label class="theLabels" for="ACNumber"><b>Account Number</b></label>
+      <input class="theInputs" type="text" placeholder="Enter ACNumber"  value="{{i.ACNumber}}" name="ACNumber" id="ACNumber" required>
+
+      <label class="theLabels" for="branchName"><b>Branch Name</b></label>
+      <input class="theInputs" type="text" placeholder="Enter Branch Name"  value="{{i.branchName}}" name="branchName" id="branchName" required>
+
+      <label class="theLabels" for="IFSCNumber"><b>IFSC Number</b></label>
+      <input class="theInputs" type="text" placeholder="Enter IFSC Number"  value="{{i.IFSCNumber}}" name="IFSCNumber" id="IFSCNumber" required>
+
+      <label class="theLabels" for="salary"><b>Salary</b></label>
+      <input class="theInputs" type="text" placeholder="Enter Salary"  value="{{i.salary}}" name="salary" id="salary" required>
+        <center>
+     <!-- <a  onClick="myFunc(this.id);" href="'#"><button id="button1" type="submit" class="editbtn">Edit</button></a> -->
+     <button type="submit" class="deletebtn">Update</button>
+    </center>
+    
+    </div>
+    
+  </form>
+  {% endfor %}
+</body>
+</html> 
+<!-- <script>
+    function myFunc(id){
+        alert(id); 
+        console.log(id)
+        $('#contactForm').submit(function () {
+            $.ajax({
+                type: 'PUT',
+                url: "{% url 'employee:edit' 4 %}",
+                data: $(this).serialize(),
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    window.alert("Success")
+                }
+            });
+            console.log(data)
+    });
+}
+</script> -->

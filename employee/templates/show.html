@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+body {font-family: "Lato", sans-serif;}
+
+.sidebar {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 16px;
+}
+
+.sidebar a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+.header {
+  padding: 0px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 30px;
+}
+
+.sidebar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+table, th, td {
+
+border: 1px solid black;
+
+border-collapse: collapse;
+
+}
+colgroup {
+
+width: 250px;
+
+}
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <a href="{% url 'employee:create' %}" method="GET" class="active"><i class="fa fa-fw fa-home"></i> Home</a>
+  <a href="{% url 'employee:creationform' %}" method="POST"><i class="fa fa-fw fa-user"></i>New Employee</a>
+  <a href="{% url 'employee:index' %}" method="POST"><i class="fa fa-fw fa-user"></i>Logout</a>
+</div>
+<div style="margin-left:8%">
+
+    <div class="w3-container w3-teal">
+      <h1>Employee Record</h1>
+    </div>
+</div>
+<br>
+<br>
+    <table style="margin-left:11%; padding-top: 500 px; margin-right:2%;">
+
+        <colgroup>
+
+        <col>
+        <col>
+        <col>
+        <col>
+        <col>
+        <col>
+        <col>
+        <col>
+        </colgroup>
+        <tr>
+        <th>Sl.No </th>
+        <th>Employee Code </th>
+        <th>Name</th>
+        <th>Email address</th>
+        <th>Phone Number </th>
+        <th>DOB</th>
+        <th>Designation</th>
+        <th>Aadhar Number</th>
+        
+        </tr>
+        {% for i in context %}
+        <tr>
+        <td style="width: 5px;">{{forloop.counter}}</td>
+        <td>{{i.employee_code}}</td>
+        <td>{{i.name}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.phone_number}}</td>
+        <td>{{i.DOB}}</td>
+        <td>{{i.designation}}</td>
+        <td>{{i.aadharNumber}}</td>
+        <td><button><a href="{% url 'employee:view' i.id %}" method="POST">View</a></button></td>
+        <td><button><a href="{% url 'employee:edit' i.id %}" method="PUT">Edit</a></button></td>
+        <td><button><a href="{% url 'employee:delete' i.id %}" method="DELETE">Delete</a></button></td>
+        </tr>
+        {% endfor %}
+    
+        </table>
+</body>
+</html> 
