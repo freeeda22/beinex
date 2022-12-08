@@ -153,15 +153,22 @@ hr {
 <form action="{% url 'employee:create' %}" method="POST" style="margin-left:10%">
     {% csrf_token %}
     {% for message in messages %}
-    <div class="container-fluid p-0">
-      <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+    <div class="container-fluid p-0"  id="msg" ><b>
+      <div class="alert alert-{{ message.tags }} " role="alert" style="color:red;">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="True">&times;</span>
         </button>
-        {{ message }}
-      </div>
+        {{ message }} 
+      </div></b>
     </div>
     {% endfor %}
+    <!-- {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-error " id="msg" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+  {% endif %} -->
     <div class="container">
       <h1>Register</h1>
       <p>Please fill in this form to create an account.</p>
@@ -207,5 +214,12 @@ hr {
     </div>
     
   </form>
+  <script>
+    setTimeout(function(){
+      if ($('#msg').length > 0) {
+        $('#msg').remove();
+      }
+    }, 1)
+  </script>
 </body>
 </html> 

@@ -28,7 +28,9 @@ class Signup(APIView):
             return redirect('employee:index')
         else:
             error_list = [serializer.errors[error][0] for error in serializer.errors]
-            return Response({"status":False,"message":error_list[0]})
+            messages.error(request, error_list[0])
+            return redirect("employee:createuser")
+            
 
 class Login(APIView):
     """
@@ -95,7 +97,7 @@ class CreateEmployee(APIView):
             return render(request,"salary.html",data)
         else:
             error_list = [serializer.errors[error][0] for error in serializer.errors]
-            messages.error(request, error_list[0])
+            messages.success(request, error_list[0])
             return redirect("employee:creationform")
 
 

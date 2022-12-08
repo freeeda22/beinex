@@ -118,9 +118,9 @@ width: 250px;
         <td>{{i.DOB}}</td>
         <td>{{i.designation}}</td>
         <td>{{i.aadharNumber}}</td>
-        <td><button><a href="{% url 'employee:view' i.id %}" method="POST">View</a></button></td>
-        <td><button><a href="{% url 'employee:edit' i.id %}" method="PUT">Edit</a></button></td>
-        <td><button><a href="{% url 'employee:delete' i.id %}" method="DELETE">Delete</a></button></td>
+        <td><button style="background-color:yellowgreen;" ><a href="{% url 'employee:view' i.id %}" method="POST">View</a></button></td>
+        <td><button style="background-color:gold;" ><a href="{% url 'employee:edit' i.id %}" method="PUT">Edit</a></button></td>
+        <td><button style="background-color:red;" ><a href="{% url 'employee:delete' i.id %}" method="DELETE">Delete</a></button></td>
         </tr>
         {% endfor %}
     
