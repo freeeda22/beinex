@@ -4,7 +4,7 @@ from .models import *
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import  permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated,IsAdminUser
 from django.shortcuts import render,redirect,HttpResponseRedirect
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 from django.contrib.auth import authenticate, logout, login
@@ -13,6 +13,7 @@ from rest_framework.decorators import action
 from django.contrib.auth.hashers import make_password,check_password
 from django.contrib import messages
 from django.urls import reverse,reverse_lazy
+from django.contrib.auth.decorators import login_required
 
 class Signup(APIView): 
     """
@@ -31,7 +32,6 @@ class Signup(APIView):
             messages.error(request, error_list[0])
             return redirect("employee:createuser")
             
-
 class Login(APIView):
     """
     A viewset for signup and signin of an user
@@ -48,6 +48,7 @@ class Login(APIView):
             user_id=user.id
             if user:
                 user=authenticate(email=email,password=password)
+                login(request, user)
                 if(user!=None):
                     token, created = Token.objects.get_or_create(user=user_id)
                     result={
@@ -167,9 +168,11 @@ class DeleteEmployee(APIView):
         except:
             return Response({"status": False, "Message": "Employee Deletion Failed"})
 
+@login_required
 def index(request):
     return redirect(request,"")
 
+@login_required
 def creationform(request):
     return redirect(request,"creationform.html")
 
