@@ -89,7 +89,8 @@ AUTH_USER_MODEL = 'employee.User'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'Beinex',
+        # 'NAME': 'Beinex',
+        'Name':'Employee'
     }
 }
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
