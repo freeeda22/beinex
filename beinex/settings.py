@@ -90,7 +90,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': 'Beinex',
-        'NAME':'Employee'
+        'NAME':'Staff'
     }
 }
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
