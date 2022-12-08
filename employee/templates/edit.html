@@ -56,7 +56,7 @@ body {font-family: "Lato", sans-serif;}
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: black;
+  background-color: white;
 }
 
 * {
@@ -80,6 +80,20 @@ input[type=text]{
 }
 
 input[type=text]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+input[type=number]{
+  width: 50%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=number]:focus {
   background-color: #ddd;
   outline: none;
 }
@@ -151,23 +165,33 @@ hr {
       <h1>Employee Record</h1>
     </div>
 </div>
+
 {% for i in context %}
 <form style="margin-left:10%" action="{% url 'employee:edit' i.id %}" method="post">
     {% csrf_token %}
-
+    {% for message in messages %}
+    <div class="container-fluid p-0">
+      <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="True">&times;</span>
+        </button>
+        {{ message }}
+      </div>
+    </div>
+    {% endfor %}
     <div class="container">
       <hr>
       <label class="theLabels" for="employee_code"><b>Employee Code</b></label>
-      <input class="theInputs" type="text" placeholder="Enter Employee Code" value="{{i.employee_code}}" name="employee_code" id="employee_code" required>
+      <input class="theInputs" type="text" placeholder="Enter Employee Code" value="{{i.employee_code}}" name="employee_code" id="employee_code" readonly>
 
       <label class="theLabels" for="name"><b>Name</b></label>
-      <input class="theInputs" type="text" placeholder="Enter Name" value="{{i.name}}" name="name" id="name" required>
+      <input class="theInputs" type="text" placeholder="Enter Name" value="{{i.name}}" name="name" id="name"  maxlength="30" required>
         
       <label class="theLabels" for="email"><b>Email</b></label>
       <input class="theInputs" type="text" placeholder="Enter Email"  value="{{i.email}}" name="email" id="email" required>
 
       <label class="theLabels" for="address"><b>Address</b></label>
-      <input class="theInputs" type="text" placeholder="Enter Address"  value="{{i.address}}" name="address" id="address" required>
+      <input class="theInputs" type="text" placeholder="Enter Address"  value="{{i.address}}" name="address" id="address" maxlength="50" required>
 
       <label class="theLabels" for="phone_number"><b>Mobile Number</b></label>
       <input class="theInputs" type="text" placeholder="Enter Mobile"  value="{{i.phone_number}}"  name="phone_number" id="phone_number" required>
@@ -176,25 +200,25 @@ hr {
       <input class="theInputs" type="text" placeholder="Enter DOB"  value="{{i.DOB}}" name="DOB" id="DOB" required>
 
       <label class="theLabels" for="designation"><b>Designation</b></label>
-      <input class="theInputs" type="text" placeholder="Enter Designation"  value="{{i.designation}}"  name="designation" id="designation" required>
+      <input class="theInputs" type="text" placeholder="Enter Designation"  value="{{i.designation}}"  name="designation" id="designation" maxlength="30" required>
 
       <label class="theLabels" for="aadharNumber"><b>AadharNumber</b></label>
-      <input class="theInputs" type="text" placeholder="Enter AadharNumber"  value="{{i.aadharNumber}}" name="aadharNumber" id="aadharNumber" required>
+      <input class="theInputs" type="number" placeholder="Enter AadharNumber"  value="{{i.aadharNumber}}" name="aadharNumber" id="aadharNumber" maxlength="12" required>
 
       <label class="theLabels" for="bankName"><b>Bank Name</b></label>
-      <input class="theInputs" type="text" placeholder="Enter Bank Name"  value="{{i.bankName}}" name="bankName" id="bankName" required>
+      <input class="theInputs" type="text" placeholder="Enter Bank Name"  value="{{i.bankName}}" name="bankName" id="bankName" maxlength="30" required>
 
       <label class="theLabels" for="ACNumber"><b>Account Number</b></label>
-      <input class="theInputs" type="text" placeholder="Enter ACNumber"  value="{{i.ACNumber}}" name="ACNumber" id="ACNumber" required>
+      <input class="theInputs" type="text" placeholder="Enter ACNumber"  value="{{i.ACNumber}}" name="ACNumber" id="ACNumber" maxlength="16" required>
 
       <label class="theLabels" for="branchName"><b>Branch Name</b></label>
-      <input class="theInputs" type="text" placeholder="Enter Branch Name"  value="{{i.branchName}}" name="branchName" id="branchName" required>
+      <input class="theInputs" type="text" placeholder="Enter Branch Name"  value="{{i.branchName}}" name="branchName" id="branchName" maxlength="30" required>
 
       <label class="theLabels" for="IFSCNumber"><b>IFSC Number</b></label>
-      <input class="theInputs" type="text" placeholder="Enter IFSC Number"  value="{{i.IFSCNumber}}" name="IFSCNumber" id="IFSCNumber" required>
+      <input class="theInputs" type="text" placeholder="Enter IFSC Number"  value="{{i.IFSCNumber}}" name="IFSCNumber" id="IFSCNumber" maxlength="24" required>
 
       <label class="theLabels" for="salary"><b>Salary</b></label>
-      <input class="theInputs" type="text" placeholder="Enter Salary"  value="{{i.salary}}" name="salary" id="salary" required>
+      <input class="theInputs" type="number" placeholder="Enter Salary"  value="{{i.salary}}" name="salary" id="salary" required>
         <center>
      <!-- <a  onClick="myFunc(this.id);" href="'#"><button id="button1" type="submit" class="editbtn">Edit</button></a> -->
      <button type="submit" class="deletebtn">Update</button>
@@ -206,21 +230,4 @@ hr {
   {% endfor %}
 </body>
 </html> 
-<!-- <script>
-    function myFunc(id){
-        alert(id); 
-        console.log(id)
-        $('#contactForm').submit(function () {
-            $.ajax({
-                type: 'PUT',
-                url: "{% url 'employee:edit' 4 %}",
-                data: $(this).serialize(),
-                contentType: 'application/json; charset=utf-8',
-                success: function (data) {
-                    window.alert("Success")
-                }
-            });
-            console.log(data)
-    });
-}
-</script> -->
+

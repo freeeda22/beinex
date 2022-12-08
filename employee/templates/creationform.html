@@ -84,6 +84,19 @@ input[type=text]:focus {
   outline: none;
 }
 
+input[type=number]{
+  width: 50%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=number]:focus {
+  background-color: #ddd;
+  outline: none;
+}
 /* Overwrite default styles of hr */
 hr {
   border: 1px solid #f1f1f1;
@@ -155,40 +168,40 @@ hr {
       <hr>
 
       <label class="theLabels" for="employee_code"><b>Employee Code</b></label>
-      <input class="theInputs" type="text" placeholder="Enter Employee Code" name="employee_code" id="employee_code" required>
+      <input class="theInputs" type="text" placeholder="Enter Employee Code" name="employee_code" id="employee_code" maxlength="6" required>
 
       <label class="theLabels" for="name"><b>Name</b></label>
-      <input class="theInputs" type="text" placeholder="Enter Name" name="name" id="name" required>
+      <input class="theInputs" type="text" placeholder="Enter Name" name="name" id="name" maxlength="30" required>
         
       <label class="theLabels" for="email"><b>Email</b></label>
       <input class="theInputs" type="text" placeholder="Enter Email" name="email" id="email" required>
 
       <label class="theLabels" for="address"><b>Address</b></label>
-      <input class="theInputs" type="text" placeholder="Enter Address" name="address" id="address" required>
+      <input class="theInputs" type="text" placeholder="Enter Address" name="address" id="address" maxlength="50" required>
 
       <label class="theLabels" for="phone_number"><b>Mobile Number</b></label>
-      <input class="theInputs" type="text" placeholder="Enter Mobile" name="phone_number" id="phone_number" required>
+      <input class="theInputs" maxlength="10" type="number" placeholder="Enter Mobile" name="phone_number" id="phone_number"  required>
 
       <label class="theLabels" for="DOB"><b>DOB</b></label>
       <input class="theInputs" type="text" placeholder="Enter DOB" name="DOB" id="DOB" required>
 
       <label class="theLabels" for="designation"><b>Designation</b></label>
-      <input class="theInputs" type="text" placeholder="Enter Designation" name="designation" id="designation" required>
+      <input class="theInputs" type="text" placeholder="Enter Designation" name="designation" id="designation" maxlength="30" required>
 
       <label class="theLabels" for="aadharNumber"><b>AadharNumber</b></label>
-      <input class="theInputs" type="text" placeholder="Enter AadharNumber" name="aadharNumber" id="aadharNumber" required>
+      <input class="theInputs" type="number" placeholder="Enter AadharNumber" name="aadharNumber" id="aadharNumber" maxlength="12" required>
 
       <label class="theLabels" for="bankName"><b>Bank Name</b></label>
-      <input class="theInputs" type="text" placeholder="Enter Bank Name" name="bankName" id="bankName" required>
+      <input class="theInputs" type="text" placeholder="Enter Bank Name" name="bankName" id="bankName" maxlength="30"  required>
 
       <label class="theLabels" for="ACNumber"><b>Account Number</b></label>
-      <input class="theInputs" type="text" placeholder="Enter ACNumber" name="ACNumber" id="ACNumber" required>
+      <input class="theInputs" type="text" placeholder="Enter ACNumber" name="ACNumber" id="ACNumber" maxlength="16" required>
 
       <label class="theLabels" for="branchName"><b>Branch Name</b></label>
-      <input class="theInputs" type="text" placeholder="Enter Branch Name" name="branchName" id="branchName" required>
+      <input class="theInputs" type="text" placeholder="Enter Branch Name" name="branchName" id="branchName" maxlength="30" required>
 
       <label class="theLabels" for="IFSCNumber"><b>IFSC Number</b></label>
-      <input class="theInputs" type="text" placeholder="Enter IFSC Number" name="IFSCNumber" id="IFSCNumber" required>
+      <input class="theInputs" type="text" placeholder="Enter IFSC Number" name="IFSCNumber" id="IFSCNumber" maxlength="24" required>
   
       <center><button type="submit" class="registerbtn">Register</button></center>
     </div>

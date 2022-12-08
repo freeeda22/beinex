@@ -84,6 +84,20 @@ input[type=text]:focus {
   outline: none;
 }
 
+input[type=number]{
+  width: 50%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=number]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
 /* Overwrite default styles of hr */
 hr {
   border: 1px solid #f1f1f1;
@@ -152,7 +166,7 @@ hr {
       <input class="theInputs" type="text" placeholder="Enter Name" name="name" value={{name}} id="name" readonly>
         
       <label class="theLabels" for="salary"><b>Salary</b></label>
-      <input class="theInputs" type="text" placeholder="Enter Salary" name="salary" id="salary" required>
+      <input class="theInputs" type="number" placeholder="Enter Salary" name="salary" id="salary" required>
 
       <center><button type="submit" class="registerbtn">Submit</button></center>
     </div>

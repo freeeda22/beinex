@@ -69,13 +69,6 @@ def validate_aadhar(value):
         )
 
 
-# def validate_contact(value):
-#     if len(value) != 10:
-#         raise ValidationError(
-#             "Enter a valid contact number",
-#             params={'value': value},
-#         )
-
 class Employee(models.Model):
     photo=models.ImageField(upload_to='profilepic',null=True)
     name=models.CharField(max_length=100)
